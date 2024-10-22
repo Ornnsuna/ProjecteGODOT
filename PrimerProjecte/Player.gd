@@ -1,4 +1,5 @@
 extends Area2D
+signal hit
 
 # Variables:
 export var speed = 400 # A quina velocitat es mourà el jugador (píxels/seg).
@@ -41,3 +42,14 @@ func _process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _on_Player_body_entered(body):
+	hide() # El jugador desapareix després de ser impactat.
+	emit_signal("hit")
+	# S'ha d'ajornar, ja que no podem canviar les propietats físiques en una crida de retorn de física.
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
