@@ -1,6 +1,8 @@
 extends Area2D
 signal hit
 
+
+
 # Variables:
 export var speed = 400 # A quina velocitat es mourà el jugador (píxels/seg).
 var screen_size # Mida de la finestra del joc
@@ -43,7 +45,7 @@ func _process(delta):
 #func _process(delta):
 #	pass
 
-func _on_Player_body_entered(body):
+func _on_Player_body_entered(_body):
 	hide() # El jugador desapareix després de ser impactat.
 	emit_signal("hit")
 	# S'ha d'ajornar, ja que no podem canviar les propietats físiques en una crida de retorn de física.
@@ -53,3 +55,10 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+
+#func _on_Player_hit():
+	#pass # Replace with function body.
+
+
+
