@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://blf5buoenbcds"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_4vo8s"]
+[ext_resource type="PackedScene" uid="uid://bautync2st4m5" path="res://tuberias.tscn" id="2_jmlpm"]
+[ext_resource type="Texture2D" uid="uid://b1u3433c3g4w2" path="res://assets/fondo.png" id="2_s7mpi"]
+[ext_resource type="PackedScene" uid="uid://c74dlqme50ac8" path="res://berb.tscn" id="3_u6uwb"]
+[ext_resource type="Script" path="res://berb.gd" id="4_adnir"]
+[ext_resource type="PackedScene" uid="uid://bv6mmhbsp0gse" path="res://suelo.tscn" id="5_2qcv6"]
+[ext_resource type="PackedScene" uid="uid://yt16x4mlous7" path="res://game_over.tscn" id="7_rsksv"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_4vo8s")
+pipe_scene = ExtResource("2_jmlpm")
+
+[node name="fondo" type="Sprite2D" parent="."]
+position = Vector2(432, 384)
+texture = ExtResource("2_s7mpi")
+
+[node name="berb" parent="." instance=ExtResource("3_u6uwb")]
+position = Vector2(-2, 1)
+script = ExtResource("4_adnir")
+
+[node name="Suelo" parent="." instance=ExtResource("5_2qcv6")]
+z_index = 1
+position = Vector2(-2, 1)
+
+[node name="TuberiasTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Puntuacio" type="Label" parent="."]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.048
+anchor_right = 0.499
+anchor_bottom = 0.048
+offset_left = -75.136
+offset_top = -27.928
+offset_right = 75.864
+offset_bottom = 27.072
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Puntuació: "
+
+[node name="GameOver" parent="." instance=ExtResource("7_rsksv")]
+
+[connection signal="tocat" from="Suelo" to="." method="_on_suelo_tocat"]
+[connection signal="timeout" from="TuberiasTimer" to="." method="_on_tuberias_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c74dlqme50ac8"]
+
+[ext_resource type="Texture2D" uid="uid://doc570i6ua2ei" path="res://assets/paja3.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://brx2yhhh0rnu7" path="res://assets/paja1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://7xljt1b230eh" path="res://assets/paja2.png" id="3"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"volar",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 15.0
+
+[node name="berb" type="CharacterBody2D"]
+position = Vector2(135, 338)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("1")
+animation = &"volar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("2")

@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bautync2st4m5"]
+
+[ext_resource type="Script" path="res://tuberias.gd" id="1_1wrx8"]
+[ext_resource type="Texture2D" uid="uid://dqq7f7m64ligq" path="res://assets/tuberia.png" id="1_7fhd5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lob0k"]
+size = Vector2(73, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y36vp"]
+size = Vector2(67, 526)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu1ey"]
+size = Vector2(71, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u14lc"]
+size = Vector2(65.5, 523)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjut5"]
+size = Vector2(20, 214)
+
+[node name="Tuberias" type="Area2D" groups=["tuberias"]]
+script = ExtResource("1_1wrx8")
+
+[node name="ADALT" type="Sprite2D" parent="."]
+position = Vector2(-2, 4)
+texture = ExtResource("1_7fhd5")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -113.5)
+shape = SubResource("RectangleShape2D_lob0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -393)
+shape = SubResource("RectangleShape2D_y36vp")
+
+[node name="ABAIX" type="Sprite2D" parent="."]
+texture = ExtResource("1_7fhd5")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 117)
+shape = SubResource("RectangleShape2D_wu1ey")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 395.5)
+shape = SubResource("RectangleShape2D_u14lc")
+
+[node name="AreaPuntuacio" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPuntuacio"]
+position = Vector2(9, -1)
+shape = SubResource("RectangleShape2D_hjut5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="AreaPuntuacio" to="." method="_on_area_puntuacio_body_entered"]
